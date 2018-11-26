@@ -1,0 +1,134 @@
+﻿@* /Volumes/MacInternalHD/Development/VisualStudio/TimeSheetsCore/TimeSheetsCoreApp/Views/User/HoursForWeek.cshtml *@
+
+@{
+    Layout = "_Layout";
+}
+
+@model TimeSheetsCoreApp.ViewModels.TimeSheetViewModel
+
+@section Styles {
+    <link href="~/css/week.css" type="text/css" rel="stylesheet" />
+}
+
+<h1>@Model.FullName: Timesheet for Week of @Model.MondayDate</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2">
+            @if (Model.IsSubmitted == false)
+            {
+            <h4>Not Submitted</h4>
+            }
+            else
+            {
+            <h4>Submitted</h4>
+            }
+        </div>
+        <div class="col-lg-6">
+            <h4>Billable Hours: @Model.BillableHours</h4>
+        </div>
+        <div class="col-lg-4">
+            <a href="@Url.Action("RefreshUserTimeSheets", "User", new {userId=Model.UserId})">Return to Timesheet List</a>
+        </div>
+    </div>
+</div>
+
+<div class=container>
+    @* Publish a table for each day of the week. *@
+    @* Days will be placed vertically. *@
+    @* Content (i.e., segments) will be placed horizontally. *@
+    @*for (int i = 0; i < 7; i++)*@
+    @{int formatHelp = 0;
+        @foreach (var workDay in Model.TimeSheet)
+        {
+            @if (formatHelp++ > 0)
+            {
+                <br />
+            }
+            @* Get Day i From Model. A day is a row. *@
+            <div class="row">
+                <div class="col-lg-2">
+                    @if (Model.IsSubmitted == false)
+                    {
+                        @Html.ActionLink(workDay.ToString(), "WorkDayForm", "User", new { userId = Model.UserId, date = workDay.ToString() }, new { @class = "nav-link mx-2" })
+                    }
+                    else
+                    {
+                        @workDay.ToString();
+                    }
+                </div>
+                <div class="col-lg-10">
+                    @if (Model.IsSubmitted == false)
+                    {
+                        <input type="button" class="btn-xs pull-left" value="Add Hours" onclick="location.href='@Url.Action("WorkDayForm", "User", new { userId = Model.UserId, date = workDay.ToString() })'" />
+                    }
+                    else
+                    {
+                        <p>Submitted</p>
+                    }
+                </div>
+            </div>
+
+            <div class="row">
+            @if (workDay.Count() > 0)
+            {
+                @foreach (var segment in workDay)
+                {
+                <div class="col-lg-2">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Rate</td>
+                                <td>Standard</td>
+                            </tr>
+                            <tr>
+                                <td>Start</td>
+                                <td>@segment.StartTime.ToString()</td>
+                            </tr>
+                            <tr>
+                                <td>End</td>
+                                <td>@segment.EndTime.ToString()</td>
+                            </tr>
+                            <tr>
+                                <td>Breaks</td>
+                                <td>@segment.BreaksToString()</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                }
+            }
+            else
+            {
+                <div class="col-lg-2">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Rate</td>
+                                <td>Standard</td>
+                            </tr>
+                            <tr>
+                                <td>Start</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>End</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Breaks</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            }
+                <div class="col-lg-6"></div>
+            </div>
+            <div class="row">Hours For Day: @workDay.CalculateBillableHours().ToString()</div>
+        }
+    }
+</div>
+
+
+

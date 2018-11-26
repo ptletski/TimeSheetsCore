@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeSheetsCoreApp", "TimeSheetsCoreApp\TimeSheetsCoreApp.csproj", "{04A8D36D-EA9D-4F36-AEC8-D5572F43E296}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeSheetsSupportTypes", "TimeSheetSupportTypes\TimeSheetsSupportTypes.csproj", "{6091BF24-F7DE-4E88-9646-3C24F47ACC1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeSheetsSupportTypesTest", "TimeSheetsSupportTypesTest\TimeSheetsSupportTypesTest.csproj", "{35D40313-2BAE-48B1-8D47-8D60E6416561}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04A8D36D-EA9D-4F36-AEC8-D5572F43E296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04A8D36D-EA9D-4F36-AEC8-D5572F43E296}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04A8D36D-EA9D-4F36-AEC8-D5572F43E296}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04A8D36D-EA9D-4F36-AEC8-D5572F43E296}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6091BF24-F7DE-4E88-9646-3C24F47ACC1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6091BF24-F7DE-4E88-9646-3C24F47ACC1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6091BF24-F7DE-4E88-9646-3C24F47ACC1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6091BF24-F7DE-4E88-9646-3C24F47ACC1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35D40313-2BAE-48B1-8D47-8D60E6416561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35D40313-2BAE-48B1-8D47-8D60E6416561}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35D40313-2BAE-48B1-8D47-8D60E6416561}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35D40313-2BAE-48B1-8D47-8D60E6416561}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,23 @@
+﻿@* /Volumes/MacInternalHD/Development/VisualStudio/TimeSheetsCore/TimeSheetsCoreApp/Views/User/UserTimeSheets.cshtml *@
+
+@{
+    Layout = "_Layout";
+}
+
+@model TimeSheetsCoreApp.ViewModels.UserTimeSheetsViewModel
+
+<h1>Logged In</h1>
+<br />
+<h2>
+    User: @Model.FullName
+</h2>
+</br/>
+<br />
+@{
+    string[] dates = Model.TimeSheetDatesAvailable();
+}
+@for (int i = 0; i < dates.Length; i++)
+{
+    <a href="@Url.Action("HoursForWeek", "User", new {date=dates[i], userId=Model.UserId})">Timesheet Week @dates[i]</a>
+    <br />
+}

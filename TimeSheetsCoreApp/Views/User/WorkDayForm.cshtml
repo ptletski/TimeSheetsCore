@@ -1,0 +1,127 @@
+﻿@*
+    /Volumes/MacInternalHD/Development/VisualStudio/TimeSheetsCore/TimeSheetsCoreApp/Views/User/WorkDayForm.cshtml
+*@
+
+@{
+    Layout = "_Layout";
+}
+
+@model TimeSheetsCoreApp.ViewModels.WorkDayFormViewModel
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/bootstrap-clockpicker.min.css" />
+}
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2"></div><div class="col-lg-10"><h1 class="text-white pull-left">@Model.FullName: Time for @Model.Date</h1></div>
+        </div>
+
+        @using (Html.BeginForm("SaveWorkDay", "User"))
+    {
+        <div class="form-group">
+            @Html.ValidationSummary()
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-2"></div><div class="col-lg-10"><label class="text-white pull-left">Charged Rate</label></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2"></div><div class="col-lg-3">
+                    @{
+                    var rateList = new SelectList(Model.GetRatesList(), "RateId", "Rate");
+                    @Html.DropDownListFor(m => m.Rate, rateList, null, new { @class = "form-control pull-left" });
+                    }
+                </div><div class="col-lg-7"></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2"></div><div class="col-lg-10"><small class="form-text text-muted pull-left">What is the rate to charge?   .</small></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-2"></div><div class="col-lg-10"><label class="text-white pull-left">Start Time</label></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="form-group col-lg-1">
+                    <div class="input-group clockpicker"><input type="text" class="form-control" asp-for="StartTime" value="09:00"><span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span></div>
+                </div>
+                <div class="col-lg-9"></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2"></div><div class="col-lg-10"><small class="form-text text-muted pull-left">Start time for block.</small></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-2"></div><div class="col-lg-10"><label class="text-white pull-left">End Time</label></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="form-group col-lg-1">
+                    <div class="input-group clockpicker"><input type="text" class="form-control" asp-for="EndTime" value="17:00"><span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span></div>
+                </div>
+                <div class="col-lg-9"></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2"></div><div class="col-lg-10"><small class="form-text text-muted pull-left">End time for block.</small></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-2"></div><div class="col-lg-10"><label class="text-white pull-left">Break Duration</label></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2"></div><div class="col-lg-1">
+                    @{
+                    var breakList = new SelectList(Model.GetBreakTimeList(), "DurationId", "Duration");
+                    @Html.DropDownListFor(m => m.BreakTime, breakList, null, new { @class = "form-control pull-left" });
+                    }
+                </div><div class="col-lg-9"></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2"></div><div class="col-lg-10"><small class="form-text text-muted pull-left">How long was your break?   .</small></div>
+            </div>
+        </div>
+
+        <div class="row"><div class="col-lg-12"><br /></div></div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-1"><button type="submit" class="btn btn-primary pull-left">Submit</button></div>
+                <div class="col-lg-1"><input type="button" class="btn" value="Cancel" onclick="location.href='@Url.Action("HoursForWeek", "User", new {date= Model.Date, userId=Model.UserId })'" /></div>
+            </div>
+        </div>
+        @Html.HiddenFor(m => m.UserId)
+        @Html.HiddenFor(m => m.Date)
+        @Html.HiddenFor(m => m.FirstName)
+        @Html.HiddenFor(m => m.LastName)
+}
+
+    </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        jQuery(window).ready(
+            function($) {
+                    setTimeout(
+                        function() {
+                            alert("This is load test");
+                        }, 3000);
+            }
+        );
+    </script>
+
+    <script type="text/javascript" src="~/js/bootstrap-clockpicker.min.js"></script>
+
+    <script type="text/javascript">
+        jQuery('.clockpicker').clockpicker({donetext:'OK'});
+    </script>
+}

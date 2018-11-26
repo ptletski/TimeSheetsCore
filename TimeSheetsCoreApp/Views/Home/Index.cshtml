@@ -1,0 +1,85 @@
+﻿@* /Volumes/MacInternalHD/Development/VisualStudio/TimeSheetsCore/TimeSheetsCoreApp/Views/Home/Index.cshtml *@
+
+@model TimeSheetsCoreApp.ViewModels.LogOnViewModel
+
+@{
+    ViewData["Title"] = "Welcome To TimeSheets";
+    Layout = "_IntroLayout";
+}
+
+
+@{using (Html.BeginForm("LogOn", "Home", FormMethod.Post))
+    {
+        <div class="modal" id="login-modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-dark">TimeSheets Login</h5> <button type="button" class="close" data-dismiss="modal"> <span>×</span> </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label for="inputuserh" class="col-2 col-form-label text-body">Username</label>
+                            <div class="col-10">
+                                @* <input type="text" class="form-control" id="inputuserh">*@
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", type = "text", id = "inputuserh" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="inputpasswordh" class="col-2 col-form-label text-body">Password</label>
+                            <div class="col-10">
+                                @* <input type="password" class="form-control" id="inputpasswordh" placeholder="Password" style="opacity: 0.5;"> *@
+                                @Html.TextBoxFor(m => m.Password, new { @class = "form-control", type = "password", id = "inputpasswordh", style = "opacity: 0.5;" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Login</button> <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+
+<div class="p-3 h-100 d-flex flex-column">
+    <div class="container mb-auto">
+        <div class="row">
+            <div class="mx-auto col-md-9">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h1 class="cover-heading"><b>Welcome to TimeSheets</b></h1>
+                <p class="lead">Time tracking for the professional consultant</p>
+                <button type="button" class="btn btn-lg btn-light text-dark" id="modal-login-btn" data-toggle="modal" data-target="#login-modal">Login</button>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-auto">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.DisplayFor(m => m.ErrorMsg, new { @class = "form-control", type = "text" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12"></div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+}
+
+
+
+
+
